@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Point Nearby</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="atur_radius">Set radius</string>
+    <string name="_0_km">( 0.0 km )</string>
+    <string name="set_the_number_of_points">Set the number of points</string>
+    <string name="btnnext">btnNext</string>
+    <string name="btnbefore">btnBefore</string>
+    <string name="point_in_the_circle">Point in the circle</string>
+    <string name="there_is_no_point_in_the_circle">- There is no point in the circle -</string>
+    <string name="request_point">Request point</string>
+</resources>

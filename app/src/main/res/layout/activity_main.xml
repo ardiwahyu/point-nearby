@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.main.MainActivity">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:background="@color/black" />
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/refreshLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="16dp"
+                    android:backgroundTint="@color/white"
+                    android:src="@drawable/ic_my_location"
+                    map:borderWidth="0dp" />
+            </RelativeLayout>
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/bottomSheet"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                map:behavior_peekHeight = "110dp"
+                android:background="@drawable/big_rounded_bottom"
+                map:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="3dp"
+                        android:background="@color/grey"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"/>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".25"
+                            android:text="@string/atur_radius"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/tvRadius"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".25"
+                            android:text="@string/_0_km"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <SeekBar
+                            android:id="@+id/sbCircle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:max="1000"
+                            android:min="0"
+                            tools:targetApi="o" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="16sp"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/set_the_number_of_points"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:layout_weight=".6"
+                            android:gravity="center"/>
+
+                        <ImageView
+                            android:id="@+id/btnBefore"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_navigate_before"
+                            android:layout_weight=".1"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="@string/btnbefore" />
+
+                        <TextView
+                            android:id="@+id/tvPointCount"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"
+                            android:layout_weight=".2"
+                            tools:text="0"
+                            android:textAlignment="center"/>
+
+                        <ImageView
+                            android:id="@+id/btnNext"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_navigate_next"
+                            android:layout_weight=".1"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="@string/btnnext" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/point_in_the_circle"
+                        android:textSize="20sp"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="16dp"
+                        android:paddingHorizontal="16dp"/>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/rlContainerList"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvPointInCircle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:listitem="@layout/item_list_blue_point"
+                            map:layout_constraintStart_toStartOf="parent"
+                            map:layout_constraintTop_toTopOf="parent"
+                            map:layout_constraintEnd_toEndOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/tvStatusList"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/there_is_no_point_in_the_circle"
+                            android:textSize="16sp"
+                            android:textStyle="italic"
+                            android:layout_marginTop="24dp"
+                            map:layout_constraintStart_toStartOf="parent"
+                            map:layout_constraintEnd_toEndOf="parent"
+                            map:layout_constraintTop_toTopOf="parent"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.core.widget.NestedScrollView>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </FrameLayout>
+
+</layout>
